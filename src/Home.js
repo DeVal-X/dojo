@@ -8,6 +8,8 @@ const Home = () => {
     { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
   ]);
 
+  const [name, setName] = useState ("Mario")
+
   const handleDelete = (id) =>{
     const newBlogs = blogs.filter(blogs => blogs.id !== id);
     setBlogs(newBlogs);
@@ -15,13 +17,15 @@ const Home = () => {
 
   useEffect(() => {
     console.log("use Effect");
-    console.log(blogs);
-  });
+    console.log(name)
+  }, [name]);
 
   return (
   <div className="home">
     < BlogList blogs={blogs} title="All blogs !" handleDelete={handleDelete}/>
     < BlogList blogs={blogs.filter((blogs) => blogs.author === 'mario')} title="Mario's blog" handleDelete={handleDelete}/>
+    <button onClick={() => {setName("luigi")}}>Change Name</button>
+    <p>{name}</p>
   </div>
   );
 }
